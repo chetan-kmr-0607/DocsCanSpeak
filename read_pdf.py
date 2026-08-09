@@ -2,7 +2,7 @@ from pypdf import PdfReader
 
 reader = PdfReader("Docs/ledger.pdf")
 
-print(f"Number of pages: {len(reader.pages)}")
+# print(f"Number of pages: {len(reader.pages)}")
 
 full_text = ""
 
@@ -24,16 +24,16 @@ def chunk_text(text, chunk_size=500, overlap=50):
 
 
 chunks = chunk_text(full_text)
-print(f"Number of chunks: {len(chunks)}")
-print("--- First chunk ---")
-print(chunks[0])
-print("--- Second chunk ---")
-print(chunks[1])
+# print(f"Number of chunks: {len(chunks)}")
+# print("--- First chunk ---")
+# print(chunks[0])
+# print("--- Second chunk ---")
+# print(chunks[1])
 
 
 import chromadb
 
-client = chromadb.Client()
+client = chromadb.PersistentClient(path="./chroma_db")
 collection = client.create_collection(name="ledger")
 
 ids = [f"chunk_{i}" for i in range(len(chunks))]
@@ -43,7 +43,6 @@ collection.add(
     ids=ids
 )
 
-print(f"Stored {collection.count()} chunks in ChromaDB")
 
 
 results = collection.query(
