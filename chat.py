@@ -1,21 +1,19 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2870
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+import ollama
 
-\f0\fs24 \cf0 import os\
-from dotenv import load_dotenv\
-from anthropic import Anthropic\
-\
-load_dotenv()\
-client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))\
-\
-response = client.messages.create(\
-    model="claude-sonnet-5",\
-    max_tokens=1000,\
-    messages=[\{"role": "user", "content": "Explain RAG in two sentences."\}],\
-)\
-\
-print(response.content[0].text)}
+conversation = []
+
+while True:
+    user_input = input("You: ")
+
+    if user_input.lower() in ("quit", "exit"):
+        break
+    conversation.append({"role": "user", "content": user_input})
+
+    response = ollama.chat(
+        model="llama3.2",
+        messages=conversation,
+    )
+    reply = response["message"]["content"]
+    print("ollama:", reply)
+
+    conversation.append({"role": "assistant", "content": reply})
