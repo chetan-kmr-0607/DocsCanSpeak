@@ -6,6 +6,10 @@ A local RAG (Retrieval-Augmented Generation) chatbot that answers questions from
 
 Ask a question about a document you own (a PDF ledger, notes, policy, etc.), and get an answer grounded in that document's actual content — with the source passages shown, so the answer can be verified rather than trusted blindly. Runs entirely locally, no cloud API, no cost per query.
 
+## Demo
+
+![DocScanSpeak demo](./screenshots/demo.png)
+
 ## Concepts learned, by stage
 
 ### Stage 1 — LLMs are stateless
