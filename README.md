@@ -4,6 +4,8 @@ A local RAG (Retrieval-Augmented Generation) chatbot that answers questions from
 
 ## What it does
 
+AI Aspiration Project 1 (LLM, Chunks using CromaDB, RAGS, StreamLit)
+
 Ask a question about a document you own (a PDF ledger, notes, policy, etc.), and get an answer grounded in that document's actual content — with the source passages shown, so the answer can be verified rather than trusted blindly. Runs entirely locally, no cloud API, no cost per query.
 
 ## Demo
